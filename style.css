@@ -1,106 +1,182 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
+html,
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: #0b0b0b;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #061120;
   color: white;
-  line-height: 1.6;
 }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  background: url("malthe-hvid-rise.JPG") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+body {
   position: relative;
 }
 
-/* OVERLAY */
-.overlay {
-  text-align: center;
-  background: rgba(0,0,0,0.6);
-  padding: 40px;
+/* Forside */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* HERO TEXT */
+.hero img,
+.hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mørkt lag ovenpå billede/video */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+/* Tekst på forsiden */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
 .hero h1 {
-  font-size: 36px;
-  font-weight: 700;
+  margin: 0;
+  font-size: clamp(48px, 15vw, 120px);
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .hero p {
-  font-size: 20px;
-  margin: 15px 0;
+  margin-top: 16px;
+  font-size: clamp(16px, 4vw, 28px);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* BUTTON */
-.btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: #00ff88;
-  color: black;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 10px;
-  transition: 0.3s;
-
-  border-radius: 8px;
-  font-size: 18px;
+/* Menuknap øverst til højre */
+.menu-button {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  z-index: 1000;
+  background: transparent;
+  border: 2px solid white;
+  cursor: pointer;
 }
 
-.btn:hover {
+/* Menu-ikon med streger */
+.menu-button::before,
+.menu-button::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
   background: white;
 }
 
-/* SECTIONS */
-section {
-  padding: 80px 20px;
-  text-align: center;
+.menu-button::before {
+  top: 14px;
 }
 
-h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+.menu-button::after {
+  bottom: 14px;
 }
 
-/* RESULTATER GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: auto;
+.menu-button span {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 20px;
+  height: 2px;
+  background: white;
 }
 
-.card {
-  background: #1a1a1a;
-  padding: 30px;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  background: #222;
-}
-
-/* SPONSOR */
-.sponsor {
-  background: #111;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: black;
+/* HOME tekst øverst til venstre */
+.home-link {
+  position: fixed;
+  top: 40px;
+  left: 34px;
+  z-index: 1000;
+  color: white;
+  text-decoration: none;
   font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.home-link::before {
+  content: "";
+  display: inline-block;
+  width: 38px;
+  height: 2px;
+  background: white;
+  margin-right: 18px;
+  vertical-align: middle;
+}
+
+/* Menu når den er åben */
+.menu {
+  position: fixed;
+  inset: 0;
+  background: #061120;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.menu.active {
+  display: flex;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 18px 0;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: clamp(34px, 8vw, 64px);
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Fjern scroll-knap */
+.scroll-down {
+  display: none;
+}
+
+/* Knapper */
+.btn {
+  border-radius: 8px;
+  font-size: 18px;
 }
